@@ -1,5 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { getForecastWeather, IForecastWeather } from '../../api/weather'
+import WeatherCardSm from '../../components/WeatherCardSm'
+import getFirstWeathersData from '../../helpers/getFirstWeathersData'
+
+const dayToWord = (day: number) => {
+	return {
+		0: 'Sun',
+		1: 'Mon',
+		2: 'Tue',
+		3: 'Wed',
+		4: 'Thu',
+		5: 'Fri',
+		6: 'Sat'
+	}[day] || ''
+}
+
+const WeathersWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+`
 
 const Weathers = () => {
 
@@ -9,14 +29,19 @@ const Weathers = () => {
 		async function fetchWeatherAPI() {
 			const response = await getForecastWeather()
 			if (!!response) {
-				console.log(response)
-				setWeathers(response)
+				const sanitisedData = getFirstWeathersData(response)
+				console.log(sanitisedData)
+				setWeathers(sanitisedData)
 			}
 		}
 		fetchWeatherAPI()
 	}, [])
 
-	return <div>test</div>
+	return (!!weathers ? <WeathersWrapper>{weathers.map(weather => {
+		return (
+			<WeatherCardSm day={dayToWord(new Date(weather.dt_txt).getDay())} temp={weather.main.temp} />
+		)
+	})}</WeathersWrapper> : <></>)
 }
 
 export default Weathers
