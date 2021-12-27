@@ -4,7 +4,7 @@ import Details from './Details'
 
 const DashboardWrapper = styled.div`
 	width: 1000px;
-	height: 700px;
+	height: 544px;
 	margin: auto;
 	position: absolute;
 	left: 0;

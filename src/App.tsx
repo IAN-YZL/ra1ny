@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from './theme';
 
 function App() {
+  console.log(process.env)
   return (
     <ThemeProvider theme={theme}>
       <Dashboard />
