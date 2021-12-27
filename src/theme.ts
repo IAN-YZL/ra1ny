@@ -1,5 +1,5 @@
 export const theme = {
-  mainColor: '#5c91fa',
+  mainColor: '#5e93ff',
   secondColor: '#f7c488',
   thirdColor: '#46ca7d',
   shallowMainColor: '#f0f5ff',

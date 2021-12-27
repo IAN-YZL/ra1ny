@@ -18,6 +18,7 @@ const GreetingWrapper = styled.div`
 	align-items: center;
 	color: ${props => props.theme.mainColor};
 	margin: 10px 0;
+	font-weight: 600;
 `
 
 const GreetingText = styled.p`
