@@ -17,6 +17,12 @@ export interface ForecastWeatherInfo {
   temp: any;
 }
 
+export interface WeatherBasic {
+  main: string;
+  description: string;
+  icon: string;
+}
+
 export interface IForecastWeather {
   main: {
     temp: number;
@@ -29,13 +35,7 @@ export interface IForecastWeather {
     humidity: number;
     temp_kf: number;
   };
-  weather: [
-    {
-      main: string;
-      description: string;
-      icon: string;
-    }
-  ];
+  weather: WeatherBasic[];
   clouds: {
     all: number;
   };

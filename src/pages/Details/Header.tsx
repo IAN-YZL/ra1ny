@@ -11,6 +11,7 @@ const HeaderWrapper = styled.div`
 
 const DateWrapper = styled.p`
 	font-size: 12px;
+	margin-top: 5px;
 `
 
 const GreetingWrapper = styled.div`

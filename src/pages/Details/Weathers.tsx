@@ -39,7 +39,7 @@ const Weathers = () => {
 
 	return (!!weathers ? <WeathersWrapper>{weathers.map(weather => {
 		return (
-			<WeatherCardSm day={dayToWord(new Date(weather.dt_txt).getDay())} temp={weather.main.temp} />
+			<WeatherCardSm day={dayToWord(new Date(weather.dt_txt).getDay())} temp={weather.main.temp} weather={weather.weather[0]} />
 		)
 	})}</WeathersWrapper> : <></>)
 }
