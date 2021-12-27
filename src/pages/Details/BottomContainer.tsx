@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getCurrentWeather, IWeather } from '../../api/weather'
-import WindCard from './WindCard'
+import ComfortDetailsCard from './ComfortDetailsCard'
 
 const BottomContainer = () => {
 	const [currentWeather, setCurrentWeather] = useState<IWeather>()
@@ -16,7 +16,7 @@ const BottomContainer = () => {
 		fetchWeatherAPI()
 	}, [])
 
-	return (currentWeather ? <><WindCard {...currentWeather.wind} /></> : <></>)
+	return (currentWeather ? <><ComfortDetailsCard {...currentWeather.wind} {...currentWeather.main} /></> : <></>)
 
 }
 

@@ -49,3 +49,28 @@ export const getWindTermAu = (windScale: number) => {
   }
   return 'Tropical cyclone (5)';
 };
+
+export const getWindDirection = (windDegree: number) => {
+  if (windDegree < 22.5 || windDegree > 337.5) {
+    return 'N';
+  }
+  if (windDegree < 67.5) {
+    return 'NE';
+  }
+  if (windDegree < 112.5) {
+    return 'E';
+  }
+  if (windDegree < 157.5) {
+    return 'SE';
+  }
+  if (windDegree < 202.5) {
+    return 'S';
+  }
+  if (windDegree < 247.5) {
+    return 'SW';
+  }
+  if (windDegree < 292.5) {
+    return 'W';
+  }
+  return 'NW';
+};
