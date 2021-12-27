@@ -30,3 +30,22 @@ export const getWindTerm = (windScale: number) => {
   }
   return windTerms[windScale];
 };
+
+export const getWindTermAu = (windScale: number) => {
+  if (windScale < 8) {
+    return 'Tropical Depression';
+  }
+  if (windScale < 10) {
+    return 'Tropical cyclone (1)';
+  }
+  if (windScale < 12) {
+    return 'Tropical cyclone (2)';
+  }
+  if (windScale < 14) {
+    return 'Tropical cyclone (3)';
+  }
+  if (windScale < 17) {
+    return 'Tropical cyclone (4)';
+  }
+  return 'Tropical cyclone (5)';
+};

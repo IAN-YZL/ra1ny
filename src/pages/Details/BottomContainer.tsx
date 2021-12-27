@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { getCurrentWeather, WeatherInfo } from '../../api/weather'
-import { getWindScale } from '../../helpers/windCategories'
+import { getCurrentWeather, IWeather } from '../../api/weather'
+import WindCard from './WindCard'
 
 const BottomContainer = () => {
-	const [currentWeather, setCurrentWeather] = useState<WeatherInfo>()
+	const [currentWeather, setCurrentWeather] = useState<IWeather>()
 
 	useEffect(() => {
 		async function fetchWeatherAPI() {
 			const response = await getCurrentWeather()
 			if (!!response) {
-				// const sanitisedData = getFirstWeathersData(response)
+				console.log(response)
 				setCurrentWeather(response)
 			}
 		}
 		fetchWeatherAPI()
 	}, [])
-	return (currentWeather ? <>{getWindScale(currentWeather.wind)}</> : <></>)
+
+	return (currentWeather ? <><WindCard {...currentWeather.wind} /></> : <></>)
+
 }
 
 export default BottomContainer
