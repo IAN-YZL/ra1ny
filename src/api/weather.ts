@@ -46,10 +46,10 @@ export interface IForecastWeather {
   };
   visibility: number;
   pop: number;
-  rain: {
+  dt_txt: string;
+  rain?: {
     '3h': number;
   };
-  dt_txt: string;
 }
 
 export const getCurrentWeather = (city = 'Sydney'): Promise<void | WeatherInfo> => {

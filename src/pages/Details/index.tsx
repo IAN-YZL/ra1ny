@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import CurrentWeathers from './Weathers'
 import Header from './Header'
+import BottomContainer from './BottomContainer'
 
 const DetailsWrapper = styled.div`
 	padding: 22px;
@@ -15,6 +16,7 @@ const Details = () => (
 	<DetailsWrapper>
 		<Header />
 		<CurrentWeathers />
+		<BottomContainer />
 	</DetailsWrapper>
 )
 
