@@ -4,3 +4,7 @@ html, body {
 	padding: 0;
 	background-color: #cdd3e7;
 }
+
+p {
+	margin: 0;
+}

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Details from './Details'
 
 const DashboardWrapper = styled.div`
 	width: 1000px;
@@ -14,7 +15,9 @@ const DashboardWrapper = styled.div`
 `
 
 const Dashboard = () => (
-	<DashboardWrapper />
+	<DashboardWrapper>
+		<Details />
+	</DashboardWrapper>
 )
 
 export default Dashboard
