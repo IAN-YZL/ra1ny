@@ -8,7 +8,7 @@ const BottomContainer = (props: WeatherDataProps) => {
 	return (
 		<>
 			<ComfortDetailsCard {...currentData.wind} {...currentData.main} />
-			<CloudinessCard />
+			<CloudinessCard forecastData={props.forecastData} />
 		</>
 	)
 

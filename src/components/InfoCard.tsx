@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { CSSProperties, ReactNode } from 'react'
 import styled from 'styled-components'
 
 const InfoCardWrapper = styled.div`
@@ -6,7 +6,6 @@ const InfoCardWrapper = styled.div`
 	width: 220px;
 	background-color: #ffffff;
 	border-radius: 10px;
-	margin-bottom: 10px;
 `
 
 const Title = styled.h3`
@@ -22,12 +21,13 @@ interface InfoCardProps {
 	title: string
 	children?: ReactNode
 	headerRight?: ReactNode
+	style?: CSSProperties
 }
 
 const InfoCard = (props: InfoCardProps) => {
 
 	return (
-		<InfoCardWrapper>
+		<InfoCardWrapper style={props.style}>
 			<HeaderWrapper>
 				<Title>{props.title}</Title>
 				{props.headerRight}

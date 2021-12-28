@@ -15,4 +15,5 @@ export interface Theme {
   shallowMainColor: string;
   shallowSecondColor: string;
   shallowThirdColor: string;
+  disabledColor: string;
 }
