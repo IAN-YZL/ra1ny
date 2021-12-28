@@ -1,5 +1,6 @@
 import React, { CSSProperties, ReactNode } from 'react'
 import styled from 'styled-components'
+import { FlexSpaceBetweenWrapper } from '../components/styledComponents'
 
 const InfoCardWrapper = styled.div`
 	padding: 12px;
@@ -10,11 +11,6 @@ const InfoCardWrapper = styled.div`
 
 const Title = styled.h3`
 	font-size: 12px;
-`
-
-const HeaderWrapper = styled.div`
-	display: flex;
-	justify-content: space-between;
 `
 
 interface InfoCardProps {
@@ -28,10 +24,10 @@ const InfoCard = (props: InfoCardProps) => {
 
 	return (
 		<InfoCardWrapper style={props.style}>
-			<HeaderWrapper>
+			<FlexSpaceBetweenWrapper>
 				<Title>{props.title}</Title>
 				{props.headerRight}
-			</HeaderWrapper>
+			</FlexSpaceBetweenWrapper>
 
 			{props.children}
 		</InfoCardWrapper>

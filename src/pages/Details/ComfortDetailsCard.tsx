@@ -6,6 +6,7 @@ import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
 import { getWindDirection, getWindScale, getWindTerm, getWindTermAu } from '../../helpers/windCategories';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Theme } from '../../theme';
+import { FlexSpaceBetweenWrapper, FlexWrapper } from '../../components/styledComponents';
 
 const WindHeaderWrapper = styled.div`
 	margin: 12px 0;
@@ -27,10 +28,8 @@ const TermsWrapper = styled.div`
 	margin-left: 2px;
 `
 
-const ComfortInfosContainer = styled.div`
-	display: flex;
+const ComfortInfosContainer = styled(FlexSpaceBetweenWrapper)`
 	color: ${props => props.theme.thirdColor};
-	justify-content: space-between;
 
 `
 
@@ -56,10 +55,6 @@ const ComfortInfoLabel = styled.p`
 
 const ComfortInfoTextWrapper = styled.div`
 	text-align: center;
-`
-
-const LocationWrapper = styled.div`
-	display: flex;
 `
 
 const ComfortInfo = (props: { label: string, value: string }) => {
@@ -95,10 +90,10 @@ const StyledLocationIcon = styled(LocationOnOutlinedIcon)`
 
 const LocationComp = withTheme((props: { location: string, theme: Theme }) => {
 	return (
-		<LocationWrapper>
+		<FlexWrapper>
 			<StyledLocationIcon htmlColor={props.theme.mainColor} />
 			<WindTermAu>{props.location}</WindTermAu>
-		</LocationWrapper>
+		</FlexWrapper>
 	)
 })
 
