@@ -21,18 +21,18 @@ const SunCardWrapper = styled.div`
 `
 
 const LocationText = styled.p`
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: 600;
 	margin-left: 2px;
 `
 
 const SunStatusLabel = styled.p`
-	font-size: 10px;
+	font-size: 12px;
 	color: ${props => props.theme.disabledColor};
 `
 
 const SunStatusTime = styled.p`
-	font-size: 10px;
+	font-size: 12px;
 	color: ${props => props.theme.mainColor};
 `
 

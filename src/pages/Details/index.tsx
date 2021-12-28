@@ -8,7 +8,6 @@ import { WeatherDataProps } from '../Dashboard'
 const DetailsWrapper = styled.div`
 	padding: 22px;
 	width: 480px;
-	height: 500px;
 	background-color: ${props => props.theme.shallowMainColor};
 `
 

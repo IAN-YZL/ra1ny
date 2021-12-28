@@ -21,7 +21,7 @@ const WindTerm = styled.p`
 
 const WindTermAu = styled.p`
 	color: ${props => props.theme.disabledColor};
-	font-size: 10px;
+	font-size: 12px;
 `
 
 const TermsWrapper = styled.div`
@@ -44,7 +44,7 @@ const ComfortInfoWrapper = styled.div`
 `
 
 const ComfortInfoValue = styled.p`
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: 600;
 	margin-bottom: 4px;
 `
