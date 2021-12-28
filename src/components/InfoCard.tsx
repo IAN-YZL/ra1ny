@@ -6,6 +6,7 @@ const InfoCardWrapper = styled.div`
 	width: 220px;
 	background-color: #ffffff;
 	border-radius: 10px;
+	margin-bottom: 10px;
 `
 
 const Title = styled.h3`
