@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const InfoCardWrapper = styled.div`
 	padding: 12px;
-	width: 220px;
+	width: 210px;
 	background-color: #ffffff;
 	border-radius: 10px;
 `

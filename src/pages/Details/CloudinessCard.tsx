@@ -17,7 +17,7 @@ const CloudinessCard = withTheme((props: { forecastData: IForecastWeather[], the
 	console.log(props.theme)
 	return (
 		<InfoCard title='Weekly Cloudiness' style={{ marginTop: '10px' }}>
-			<AreaChart data={sanitisedCloudData} height={80} width={220} margin={{ top: 12 }}>
+			<AreaChart data={sanitisedCloudData} height={80} width={210} margin={{ top: 12 }}>
 				<Tooltip />
 				<XAxis dataKey='time' hide={true} />
 				<Area dataKey='clouds' fillOpacity={1} stroke={props.theme.secondColor} fill={props.theme.shallowSecondColor} />
