@@ -5,7 +5,7 @@ export const theme = {
   shallowMainColor: '#f0f5ff',
   shallowSecondColor: '#fff8ef',
   shallowThirdColor: '#dbfce7',
-  disabledColor: '#c9cad2',
+  disabledColor: '#a7a8ae',
 };
 
 export interface Theme {

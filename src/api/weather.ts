@@ -29,7 +29,7 @@ export interface IWindBasic {
   gust: number;
 }
 
-export interface IWeather {
+export interface IWeatherBase {
   main: {
     temp: number;
     feels_like: number;
@@ -47,6 +47,15 @@ export interface IWeather {
   rain?: {
     '3h': number;
   };
+}
+
+export interface ISunDetails {
+  sunrise: number;
+  sunset: number;
+}
+
+export interface IWeather extends IWeatherBase {
+  sys: ISunDetails;
 }
 
 export interface IForecastWeather extends IWeather {
