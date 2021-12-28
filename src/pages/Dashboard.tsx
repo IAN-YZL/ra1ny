@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { IForecastWeather, IWeather } from '../api/weather'
 import Details from './Details'
 
 const DashboardWrapper = styled.div`
@@ -14,9 +15,14 @@ const DashboardWrapper = styled.div`
 	background-color: white;
 `
 
-const Dashboard = () => (
+export interface WeatherDataProps {
+	forecastData: IForecastWeather[]
+	currentData: IWeather
+}
+
+const Dashboard = (props: WeatherDataProps) => (
 	<DashboardWrapper>
-		<Details />
+		<Details {...props} />
 	</DashboardWrapper>
 )
 

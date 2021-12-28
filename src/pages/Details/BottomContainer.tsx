@@ -1,26 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { getCurrentWeather, IWeather } from '../../api/weather'
+import React from 'react'
+import { WeatherDataProps } from '../Dashboard'
 import CloudinessCard from './CloudinessCard'
 import ComfortDetailsCard from './ComfortDetailsCard'
 
-const BottomContainer = () => {
-	const [currentWeather, setCurrentWeather] = useState<IWeather>()
-
-	useEffect(() => {
-		async function fetchWeatherAPI() {
-			const response = await getCurrentWeather()
-			if (!!response) {
-				console.log(response)
-				setCurrentWeather(response)
-			}
-		}
-		fetchWeatherAPI()
-	}, [])
-
-	return (currentWeather ? <>
-		<ComfortDetailsCard {...currentWeather.wind} {...currentWeather.main} />
-		<CloudinessCard />
-	</> : <></>)
+const BottomContainer = (props: WeatherDataProps) => {
+	const { currentData } = props
+	return (
+		<>
+			<ComfortDetailsCard {...currentData.wind} {...currentData.main} />
+			<CloudinessCard />
+		</>
+	)
 
 }
 
