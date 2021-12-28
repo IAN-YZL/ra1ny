@@ -12,16 +12,26 @@ const Title = styled.h3`
 	font-size: 12px;
 `
 
+const HeaderWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+`
+
 interface InfoCardProps {
 	title: string
 	children?: ReactNode
+	headerRight?: ReactNode
 }
 
 const InfoCard = (props: InfoCardProps) => {
 
 	return (
 		<InfoCardWrapper>
-			<Title>{props.title}</Title>
+			<HeaderWrapper>
+				<Title>{props.title}</Title>
+				{props.headerRight}
+			</HeaderWrapper>
+
 			{props.children}
 		</InfoCardWrapper>
 	)

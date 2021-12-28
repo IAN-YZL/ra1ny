@@ -1,9 +1,11 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 import { IWindBasic } from '../../api/weather'
 import InfoCard from '../../components/InfoCard'
 import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
 import { getWindDirection, getWindScale, getWindTerm, getWindTermAu } from '../../helpers/windCategories';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { Theme } from '../../theme';
 
 const WindHeaderWrapper = styled.div`
 	margin: 12px 0;
@@ -56,6 +58,10 @@ const ComfortInfoTextWrapper = styled.div`
 	text-align: center;
 `
 
+const LocationWrapper = styled.div`
+	display: flex;
+`
+
 const ComfortInfo = (props: { label: string, value: string }) => {
 	return (
 		<ComfortInfoWrapper>
@@ -63,7 +69,6 @@ const ComfortInfo = (props: { label: string, value: string }) => {
 				<ComfortInfoValue>{props.value}</ComfortInfoValue>
 				<ComfortInfoLabel>{props.label}</ComfortInfoLabel>
 			</ComfortInfoTextWrapper>
-
 		</ComfortInfoWrapper>
 	)
 }
@@ -74,24 +79,37 @@ interface ComfortDetailsCardProps extends IWindBasic {
 	pressure: number
 }
 
+const ComfortDetailHeader = (props: { windTerm: string, windTermAu: string }) => (
+	<WindHeaderWrapper>
+		<AirOutlinedIcon />
+		<TermsWrapper>
+			<WindTerm>{props.windTerm}</WindTerm>
+			<WindTermAu>{props.windTermAu}</WindTermAu>
+		</TermsWrapper>
+	</WindHeaderWrapper>
+)
+
+const StyledLocationIcon = styled(LocationOnOutlinedIcon)`
+	font-size: 14px !important;
+`
+
+const LocationComp = withTheme((props: { location: string, theme: Theme }) => {
+	return (
+		<LocationWrapper>
+			<StyledLocationIcon htmlColor={props.theme.mainColor} />
+			<WindTermAu>{props.location}</WindTermAu>
+		</LocationWrapper>
+	)
+})
+
 const ComfortDetailsCard = (props: ComfortDetailsCardProps) => {
 	const windScale = getWindScale(props.speed)
 	const windTerm = getWindTerm(windScale)
 	const windTermAu = getWindTermAu(windScale)
 
-	const ComfortDetailHeader = () => (
-		<WindHeaderWrapper>
-			<AirOutlinedIcon />
-			<TermsWrapper>
-				<WindTerm>{windTerm}</WindTerm>
-				<WindTermAu>{windTermAu}</WindTermAu>
-			</TermsWrapper>
-		</WindHeaderWrapper>
-	)
-
 	return (
-		<InfoCard title='Comfort Index'>
-			<ComfortDetailHeader />
+		<InfoCard title='Comfort Index' headerRight={<LocationComp location='Sydney' />}>
+			<ComfortDetailHeader windTerm={windTerm} windTermAu={windTermAu} />
 			<ComfortInfosContainer>
 				<ComfortInfo label='Speed' value={props.speed.toFixed(1).toString()} />
 				<ComfortInfo label='Gust' value={props.gust.toFixed(1).toString()} />
@@ -99,12 +117,7 @@ const ComfortDetailsCard = (props: ComfortDetailsCardProps) => {
 				<ComfortInfo label='Feels' value={props.feels_like.toFixed(1).toString()} />
 				<ComfortInfo label='HUM' value={`${props.humidity}%`} />
 				<ComfortInfo label='Press' value={props.pressure.toString()} />
-
-
-
-
 			</ComfortInfosContainer>
-
 		</InfoCard>
 	)
 }
