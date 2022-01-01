@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IForecastWeather, IWeather } from '../api/weather'
+import { FlexWrapper } from '../components/styledComponents'
 import Details from './Details'
+import Overview from './Overview'
 
-const DashboardWrapper = styled.div`
+const DashboardWrapper = styled(FlexWrapper)`
 	width: 1000px;
 	max-height: 544px;
 	margin: auto;
@@ -22,6 +24,7 @@ export interface WeatherDataProps {
 const Dashboard = (props: WeatherDataProps) => (
 	<DashboardWrapper>
 		<Details {...props} />
+		<Overview />
 	</DashboardWrapper>
 )
 
