@@ -4,7 +4,9 @@ import styled from 'styled-components'
 const OverviewWrapper = styled.div`
 	background-color: #ffffff;
 	height: 100%;
-	width: 240px;
+	width: 34%;
+	padding: 12px 20px;
+	box-sizing: border-box;
 `
 
 const Overview = () => {

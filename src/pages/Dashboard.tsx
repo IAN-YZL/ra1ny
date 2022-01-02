@@ -6,7 +6,7 @@ import Details from './Details'
 import Overview from './Overview'
 
 const DashboardWrapper = styled(FlexWrapper)`
-	width: 1000px;
+	width: 800px;
 	max-height: 544px;
 	margin: auto;
 	position: absolute;
