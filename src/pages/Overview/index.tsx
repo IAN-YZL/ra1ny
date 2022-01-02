@@ -7,7 +7,7 @@ const OverviewWrapper = styled.div`
 	background-color: #ffffff;
 	height: 100%;
 	width: 34%;
-	padding: 18px 24px;
+	padding: 24px;
 	box-sizing: border-box;
 `
 
