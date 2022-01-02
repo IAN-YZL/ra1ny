@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { withTheme } from 'styled-components'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { FlexWrapper } from '../../components/styledComponents';
@@ -33,6 +33,8 @@ const StyledSearchIcon = styled(SearchOutlinedIcon)`
 `
 
 const SearchBar = (props: { theme: Theme }) => {
+	const [searchText, setSearchText] = useState<string>('')
+
 	return (
 		<SearchBarWrapper>
 			<StyledSearchIcon htmlColor={props.theme.searchColor} />
@@ -40,6 +42,12 @@ const SearchBar = (props: { theme: Theme }) => {
 				type="text"
 				placeholder="Search..."
 				name="search"
+				onChange={event => { setSearchText(event.target.value) }}
+				onKeyDown={(e) => {
+					if (e.key === 'Enter') {
+						console.log('pressed!!!')
+					}
+				}}
 			/>
 		</SearchBarWrapper>
 	)

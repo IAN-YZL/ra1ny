@@ -7,7 +7,6 @@ const HeaderWrapper = styled(FlexWrapper)`
 	margin-bottom: 24px;
 `
 const OverviewHeader = () => {
-
 	return (
 		<HeaderWrapper>
 			<SearchBar />
