@@ -6,6 +6,7 @@ export const theme = {
   shallowSecondColor: '#fff8ef',
   shallowThirdColor: '#dbfce7',
   disabledColor: '#a7a8ae',
+  searchColor: '#b7cef9',
 };
 
 export interface Theme {
@@ -16,4 +17,5 @@ export interface Theme {
   shallowSecondColor: string;
   shallowThirdColor: string;
   disabledColor: string;
+  searchColor: string;
 }
