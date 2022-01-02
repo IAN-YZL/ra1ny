@@ -26,7 +26,7 @@ const PrimaryCardWrapper = styled.div`
 const WeatherIcon = styled.img`
 	width: 120px;
 	position: relative;
-	bottom: 20px;
+	bottom: 28px;
 `
 
 const InfoWrapper = styled.div`
@@ -37,7 +37,7 @@ const InfoWrapper = styled.div`
 const InforDetails = styled.div`
 	position: absolute;
 	width: 100%;
-	top: 80px;
+	top: 72px;
 `
 
 const DateString = styled.p`
@@ -45,14 +45,13 @@ const DateString = styled.p`
 `
 
 const TempText = styled.p`
-	font-size: 40px;
+	font-size: 48px;
 	font-weight: 600;
-	margin: 8px 0;
+	margin: 6px 0;
 `
 
 const WeatherText = styled.p`
 	font-size: 14px;
-	padding: 5px 0;
 `
 
 const BottomWrapper = styled.div`
