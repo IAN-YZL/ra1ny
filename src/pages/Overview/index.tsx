@@ -1,17 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
+import { IWeather } from '../../api/weather'
+import PrimaryCard from '../../components/PrimaryCard'
 
 const OverviewWrapper = styled.div`
 	background-color: #ffffff;
 	height: 100%;
 	width: 34%;
-	padding: 12px 20px;
+	padding: 18px 24px;
 	box-sizing: border-box;
 `
 
-const Overview = () => {
+const Overview = (props: IWeather) => {
 
-	return (<OverviewWrapper></OverviewWrapper>)
+	return (
+		<OverviewWrapper>
+			<PrimaryCard {...props} />
+		</OverviewWrapper>
+	)
 }
 
 export default Overview

@@ -24,7 +24,7 @@ export interface WeatherDataProps {
 const Dashboard = (props: WeatherDataProps) => (
 	<DashboardWrapper>
 		<Details {...props} />
-		<Overview />
+		<Overview {...props.currentData} />
 	</DashboardWrapper>
 )
 

@@ -4,13 +4,6 @@ const weatherApi = axios.create({
   baseURL: 'https://api.openweathermap.org/data/2.5',
 });
 
-// export interface WeatherInfo {
-//   temp: any;
-//   wind: any;
-//   humidity: any;
-//   weather: any;
-// }
-
 export interface ForecastWeatherInfo {
   date: any;
   weather: any;
@@ -56,6 +49,7 @@ export interface ISunDetails {
 
 export interface IWeather extends IWeatherBase {
   sys: ISunDetails;
+  timezone: number;
 }
 
 export interface IForecastWeather extends IWeather {

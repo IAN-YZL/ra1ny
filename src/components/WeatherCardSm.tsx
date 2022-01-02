@@ -27,8 +27,8 @@ export interface WeatherCardSmProps {
 	weather: WeatherBasic
 }
 
-const getWeatherIconUrl = (iconIndex: string) => {
-	return `http://openweathermap.org/img/wn/${iconIndex.replace('n', 'd')}@2x.png`
+export const getWeatherIconUrl = (iconIndex: string) => {
+	return `http://openweathermap.org/img/wn/${iconIndex.replace('n', 'd')}@4x.png`
 }
 
 const WeatherCardSm = (props: WeatherCardSmProps) => {
