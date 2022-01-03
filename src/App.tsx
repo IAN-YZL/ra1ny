@@ -3,7 +3,7 @@ import Dashboard from './pages/Dashboard';
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from './theme';
 import { getCurrentWeather, getForecastWeather, IForecastData, IWeather } from './api/weather';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Snackbar, Alert } from '@mui/material';
 
 const LoadingIcon = styled(CircularProgress)`
   position: absolute;
@@ -19,18 +19,29 @@ function App() {
   const [current, setCurrent] = useState<IWeather>()
   const [city, setCity] = useState<string>('Sydney')
   const [loading, setLoading] = useState<boolean>(false)
+  const [openMessager, setOpenMessager] = useState<boolean>(false)
 
   useEffect(() => {
     setLoading(true)
     async function fetchWeatherAPI() {
-      const [forecastRes, currentRes] = await Promise.all([getForecastWeather(city), getCurrentWeather(city)])
-      if (!!forecastRes) {
-        setForecast(forecastRes)
+      try {
+        const [forecastRes, currentRes] = await Promise.all([getForecastWeather(city), getCurrentWeather(city)])
+        if (!!forecastRes) {
+          setForecast(forecastRes)
+        }
+        if (currentRes) {
+          setCurrent(currentRes)
+        }
+        setLoading(false)
+      } catch (error) {
+        setLoading(false)
+        setOpenMessager(true)
+        let message = 'Loading Data Failed'
+        if (error instanceof Error) {
+          message = error.message
+        }
+        throw new Error(message)
       }
-      if (currentRes) {
-        setCurrent(currentRes)
-      }
-      setLoading(false)
     }
     fetchWeatherAPI()
   }, [city])
@@ -39,15 +50,24 @@ function App() {
     <ThemeProvider theme={theme}>
       {
         !loading ?
-          forecast && current ?
-            <Dashboard
-              forecastData={forecast}
-              currentData={current}
-              setCity={value => setCity(value)}
-            /> :
-            <>Loading Failed!</> :
+          forecast && current &&
+          <Dashboard
+            forecastData={forecast}
+            currentData={current}
+            setCity={value => setCity(value)}
+          /> :
           <LoadingIcon />
       }
+      <Snackbar
+        open={openMessager}
+        autoHideDuration={5000}
+        onClose={() => { setOpenMessager(false) }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert severity="error" onClose={() => { setOpenMessager(false) }}>
+          {`Cannot find the city ${city} in Australia, please input a valid city name.`}
+        </Alert>
+      </Snackbar>
     </ThemeProvider>
   );
 }
