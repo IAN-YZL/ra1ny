@@ -12,11 +12,15 @@ const OverviewWrapper = styled.div`
 	box-sizing: border-box;
 `
 
-const Overview = (props: IWeather) => {
+interface OverviewProps extends IWeather {
+	setCity: (value: React.SetStateAction<string>) => void
+}
+
+const Overview = (props: OverviewProps) => {
 
 	return (
 		<OverviewWrapper>
-			<OverviewHeader />
+			<OverviewHeader setCity={value => props.setCity(value)} />
 			<PrimaryCard {...props} />
 		</OverviewWrapper>
 	)

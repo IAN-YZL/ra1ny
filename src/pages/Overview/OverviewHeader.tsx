@@ -6,10 +6,10 @@ import SearchBar from './SearchBar'
 const HeaderWrapper = styled(FlexWrapper)`
 	margin-bottom: 24px;
 `
-const OverviewHeader = () => {
+const OverviewHeader = (props: { setCity: (value: React.SetStateAction<string>) => void }) => {
 	return (
 		<HeaderWrapper>
-			<SearchBar />
+			<SearchBar setCity={(value) => props.setCity(value)} />
 
 
 		</HeaderWrapper>

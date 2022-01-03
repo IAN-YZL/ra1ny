@@ -32,7 +32,7 @@ const StyledSearchIcon = styled(SearchOutlinedIcon)`
 	font-size: 20px !important;
 `
 
-const SearchBar = (props: { theme: Theme }) => {
+const SearchBar = (props: { theme: Theme, setCity: (value: React.SetStateAction<string>) => void }) => {
 	const [searchText, setSearchText] = useState<string>('')
 
 	return (
@@ -45,7 +45,7 @@ const SearchBar = (props: { theme: Theme }) => {
 				onChange={event => { setSearchText(event.target.value) }}
 				onKeyDown={(e) => {
 					if (e.key === 'Enter') {
-						console.log('pressed!!!')
+						props.setCity(searchText)
 					}
 				}}
 			/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IForecastWeather, IWeather } from '../api/weather'
+import { IForecastData, IWeather } from '../api/weather'
 import { FlexWrapper } from '../components/styledComponents'
 import Details from './Details'
 import Overview from './Overview'
@@ -17,14 +17,15 @@ const DashboardWrapper = styled(FlexWrapper)`
 `
 
 export interface WeatherDataProps {
-	forecastData: IForecastWeather[]
+	forecastData: IForecastData
 	currentData: IWeather
+	setCity: (value: React.SetStateAction<string>) => void
 }
 
 const Dashboard = (props: WeatherDataProps) => (
 	<DashboardWrapper>
 		<Details {...props} />
-		<Overview {...props.currentData} />
+		<Overview {...props.currentData} setCity={value => props.setCity(value)} />
 	</DashboardWrapper>
 )
 

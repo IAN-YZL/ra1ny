@@ -56,6 +56,18 @@ export interface IForecastWeather extends IWeather {
   dt_txt: string;
 }
 
+export interface IForecastData {
+  city: {
+    name: string;
+    coord: {
+      lat: number;
+      lon: number;
+    };
+    country: string;
+  };
+  list: IForecastWeather[];
+}
+
 export const getCurrentWeather = (city = 'Sydney'): Promise<void | IWeather> => {
   return weatherApi
     .get('/weather', {
@@ -71,7 +83,7 @@ export const getCurrentWeather = (city = 'Sydney'): Promise<void | IWeather> => 
     });
 };
 
-export const getForecastWeather = (city = 'Sydney'): Promise<void | IForecastWeather[]> => {
+export const getForecastWeather = (city = 'Sydney'): Promise<void | IForecastData> => {
   return weatherApi
     .get('/forecast', {
       params: {
@@ -80,5 +92,5 @@ export const getForecastWeather = (city = 'Sydney'): Promise<void | IForecastWea
         APPID: process.env.REACT_APP_WEATHER_API_KEY,
       },
     })
-    .then((res) => res.data.list);
+    .then((res) => res.data);
 };

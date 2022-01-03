@@ -16,7 +16,7 @@ const DetailsWrapper = styled.div`
 const Details = (props: WeatherDataProps) => (
 	<DetailsWrapper>
 		<Header />
-		<CurrentWeathers weathers={props.forecastData} />
+		<CurrentWeathers weathers={props.forecastData.list} />
 		<BottomContainer {...props} />
 	</DetailsWrapper>
 )

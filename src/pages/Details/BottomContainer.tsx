@@ -11,7 +11,7 @@ const BottomContainer = (props: WeatherDataProps) => {
 		<FlexSpaceBetweenWrapper>
 			<div>
 				<ComfortDetailsCard {...currentData.wind} {...currentData.main} />
-				<CloudinessCard forecastData={props.forecastData} />
+				<CloudinessCard forecastData={props.forecastData.list} />
 			</div>
 			<SunDetailsCard {...currentData.sys} />
 
