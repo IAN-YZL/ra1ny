@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ra1ny/static/css/main.d234939a.css",
+    "main.js": "/ra1ny/static/js/main.6c9aa02f.js",
+    "index.html": "/ra1ny/index.html",
+    "main.d234939a.css.map": "/ra1ny/static/css/main.d234939a.css.map",
+    "main.6c9aa02f.js.map": "/ra1ny/static/js/main.6c9aa02f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d234939a.css",
+    "static/js/main.6c9aa02f.js"
+  ]
+}
