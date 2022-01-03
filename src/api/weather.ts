@@ -50,6 +50,7 @@ export interface ISunDetails {
 export interface IWeather extends IWeatherBase {
   sys: ISunDetails;
   timezone: number;
+  name: string;
 }
 
 export interface IForecastWeather extends IWeather {

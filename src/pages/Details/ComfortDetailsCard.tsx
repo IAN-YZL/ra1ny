@@ -72,6 +72,7 @@ interface ComfortDetailsCardProps extends IWindBasic {
 	feels_like: number
 	humidity: number
 	pressure: number
+	location: string
 }
 
 const ComfortDetailHeader = (props: { windTerm: string, windTermAu: string }) => (
@@ -103,7 +104,7 @@ const ComfortDetailsCard = (props: ComfortDetailsCardProps) => {
 	const windTermAu = getWindTermAu(windScale)
 
 	return (
-		<InfoCard title='Comfort Index' headerRight={<LocationComp location='Sydney' />}>
+		<InfoCard title='Comfort Index' headerRight={<LocationComp location={props.location} />}>
 			<ComfortDetailHeader windTerm={windTerm} windTermAu={windTermAu} />
 			<ComfortInfosContainer>
 				<ComfortInfo label='Speed' value={props.speed.toFixed(1).toString()} />

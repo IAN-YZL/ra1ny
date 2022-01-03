@@ -102,12 +102,12 @@ const WeatherFeature = (props: { icon: ReactNode, label: string, value: string }
 }
 
 
-const Location = () => {
+const Location = (props: { location: string }) => {
 
 	return (
 		<FlexWrapper>
 			<LocationOnOutlinedIcon htmlColor='#ffffff' fontSize='small' />
-			<LocationText>Sydney</LocationText>
+			<LocationText>{props.location}</LocationText>
 		</FlexWrapper>
 	)
 }
@@ -118,7 +118,7 @@ const PrimaryCard = (props: IWeather) => {
 
 	return (
 		<PrimaryCardWrapper>
-			<Location />
+			<Location location={props.name} />
 			<InfoWrapper>
 				<WeatherIcon src={getWeatherIconUrl(props.weather[0].icon)} alt={props.weather[0].description} />
 				<InforDetails>

@@ -45,11 +45,16 @@ const SunStatusWrapper = styled(FlexWrapper)`
 	width: 50%;
 `
 
-const SunCard = (props: ISunDetails) => {
+interface SunCardProps extends ISunDetails {
+	location: string
+}
+
+const SunCard = (props: SunCardProps) => {
+	const { location } = props
 	const Header = withTheme((props: { theme: Theme }) => (
 		<FlexWrapper>
 			<StyledLocationIcon htmlColor={props.theme.mainColor} fontSize='small' />
-			<LocationText>Sydney</LocationText>
+			<LocationText>{location}</LocationText>
 		</FlexWrapper>
 	))
 
@@ -76,7 +81,7 @@ const SunCard = (props: ISunDetails) => {
 	)
 }
 
-const SunDetailsCard = (props: ISunDetails) => {
+const SunDetailsCard = (props: SunCardProps) => {
 	return (
 		<InfoCard title='Sunrise & Sunset'>
 			<SunCard {...props} />

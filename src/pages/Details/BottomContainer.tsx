@@ -10,10 +10,10 @@ const BottomContainer = (props: WeatherDataProps) => {
 	return (
 		<FlexSpaceBetweenWrapper>
 			<div>
-				<ComfortDetailsCard {...currentData.wind} {...currentData.main} />
+				<ComfortDetailsCard {...currentData.wind} {...currentData.main} location={currentData.name} />
 				<CloudinessCard forecastData={props.forecastData.list} />
 			</div>
-			<SunDetailsCard {...currentData.sys} />
+			<SunDetailsCard {...currentData.sys} location={currentData.name} />
 
 		</FlexSpaceBetweenWrapper>
 	)
