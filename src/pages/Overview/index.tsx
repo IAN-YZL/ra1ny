@@ -1,7 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 import { IWeather } from '../../api/weather'
 import PrimaryCard from '../../components/PrimaryCard'
+import SecondaryCard from '../../components/SecondaryCard'
+import { Theme } from '../../theme'
 import OverviewHeader from './OverviewHeader'
 
 const OverviewWrapper = styled.div`
@@ -12,18 +14,28 @@ const OverviewWrapper = styled.div`
 	box-sizing: border-box;
 `
 
-interface OverviewProps extends IWeather {
+interface OverviewProps {
+	citiesData: IWeather[]
 	setCity: (value: React.SetStateAction<string>) => void
+	theme: Theme
 }
 
 const Overview = (props: OverviewProps) => {
 
+	const [primary, ...others] = props.citiesData
+	const colors = [props.theme.mainColor2, props.theme.mainColor3]
+	console.log(colors)
+
 	return (
 		<OverviewWrapper>
 			<OverviewHeader setCity={value => props.setCity(value)} />
-			<PrimaryCard {...props} />
+			<PrimaryCard {...primary} />
+			{others.map((data, index) => {
+				console.log(index)
+				return <SecondaryCard {...data} color={colors[index]} key={`overview-${data.name}-index`} />
+			})}
 		</OverviewWrapper>
 	)
 }
 
-export default Overview
+export default withTheme(Overview)

@@ -69,7 +69,7 @@ export interface IForecastData {
   list: IForecastWeather[];
 }
 
-export const getCurrentWeather = (city = 'Sydney'): Promise<void | IWeather> => {
+export const getCurrentWeather = (city = 'Sydney'): Promise<IWeather | undefined> => {
   return weatherApi
     .get('/weather', {
       params: {

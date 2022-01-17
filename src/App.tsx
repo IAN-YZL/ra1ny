@@ -14,10 +14,22 @@ const LoadingIcon = styled(CircularProgress)`
   margin: auto;
 `
 
+const fetchAllWeathers = async (cities: string[]) => {
+  const promises = cities.map(async city => {
+    const weather = await getCurrentWeather(city)
+    return weather
+  })
+  const res = await Promise.all(promises)
+
+  return res.filter(data => !!data) as IWeather[]
+}
+
+
 function App() {
   const [forecast, setForecast] = useState<IForecastData>()
-  const [current, setCurrent] = useState<IWeather>()
+  const [current, setCurrent] = useState<IWeather[]>()
   const [city, setCity] = useState<string>('Sydney')
+  // const [cities, setCities] = useState<IWeather[]>(['Sydney'])
   const [loading, setLoading] = useState<boolean>(false)
   const [openMessager, setOpenMessager] = useState<boolean>(false)
 
@@ -25,12 +37,15 @@ function App() {
     setLoading(true)
     async function fetchWeatherAPI() {
       try {
-        const [forecastRes, currentRes] = await Promise.all([getForecastWeather(city), getCurrentWeather(city)])
+        const [forecastRes, currentRes, citiesData] = await Promise.all([getForecastWeather(city), getCurrentWeather(city), fetchAllWeathers(['Sydney', 'Brisbane'])])
         if (!!forecastRes) {
           setForecast(forecastRes)
         }
-        if (currentRes) {
-          setCurrent(currentRes)
+        // if (!!currentRes) {
+        //   setCurrent([currentRes])
+        // }
+        if (citiesData.length > 0) {
+          setCurrent(citiesData)
         }
         setLoading(false)
       } catch (error) {
@@ -53,7 +68,8 @@ function App() {
           forecast && current &&
           <Dashboard
             forecastData={forecast}
-            currentData={current}
+            currentData={current[0]}
+            citiesData={current}
             setCity={value => setCity(value)}
           /> :
           <LoadingIcon />

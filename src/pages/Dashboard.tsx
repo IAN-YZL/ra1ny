@@ -19,13 +19,14 @@ const DashboardWrapper = styled(FlexWrapper)`
 export interface WeatherDataProps {
 	forecastData: IForecastData
 	currentData: IWeather
+	citiesData: IWeather[]
 	setCity: (value: React.SetStateAction<string>) => void
 }
 
 const Dashboard = (props: WeatherDataProps) => (
 	<DashboardWrapper>
 		<Details {...props} />
-		<Overview {...props.currentData} setCity={value => props.setCity(value)} />
+		<Overview setCity={value => props.setCity(value)} citiesData={props.citiesData} />
 	</DashboardWrapper>
 )
 

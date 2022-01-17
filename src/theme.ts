@@ -9,6 +9,7 @@ export const theme: Theme = {
   searchColor: '#b7cef9',
   mainColor2: '#fe77a9',
   mainColor3: '#fdb25f',
+  maxWeatherNumber: 3,
 };
 
 export interface Theme {
@@ -22,4 +23,5 @@ export interface Theme {
   searchColor: string;
   mainColor2: string;
   mainColor3: string;
+  maxWeatherNumber: number;
 }

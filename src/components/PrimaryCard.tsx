@@ -16,7 +16,7 @@ const LocationText = styled.p`
 const PrimaryCardWrapper = styled.div`
 	height: 280px;
 	width: 100%;
-	background-color: ${props => props.theme.mainColor};
+	background-color: ${props => props.color || props.theme.mainColor};
 	border-radius: 12px;
 	padding: 12px;
 	box-sizing: border-box;
@@ -112,12 +112,16 @@ const Location = (props: { location: string }) => {
 	)
 }
 
-const PrimaryCard = (props: IWeather) => {
+export interface DetailCardProps extends IWeather {
+	color?: string
+}
+
+const PrimaryCard = (props: DetailCardProps) => {
 
 	const date = new Date()
 
 	return (
-		<PrimaryCardWrapper>
+		<PrimaryCardWrapper color={props.color}>
 			<Location location={props.name} />
 			<InfoWrapper>
 				<WeatherIcon src={getWeatherIconUrl(props.weather[0].icon)} alt={props.weather[0].description} />
