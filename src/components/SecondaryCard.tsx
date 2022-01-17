@@ -10,6 +10,7 @@ const SecondaryCardWrapper = styled.div`
 	padding: 12px;
 	box-sizing: border-box;
 	color: #ffffff;
+	display: flex;
 `
 
 const SecondaryCard = (props: DetailCardProps) => {
@@ -17,6 +18,7 @@ const SecondaryCard = (props: DetailCardProps) => {
 	return (
 		<SecondaryCardWrapper color={props.color} >
 			<p>{props.wind.speed}</p>
+			<div>Right</div>
 
 		</SecondaryCardWrapper>
 	)
