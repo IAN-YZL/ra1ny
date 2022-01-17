@@ -7,18 +7,19 @@ import { FlexWrapper } from '../../components/styledComponents';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { ISunDetails } from '../../api/weather';
+import { WeatherDataProps } from '../Dashboard';
 
 const StyledLocationIcon = styled(LocationOnOutlinedIcon)`
 	font-size: 14px !important;
 `
 
 const SunCardWrapper = styled.div`
-	width: 194px;
-	height: 60px;
-	background-color: ${props => props.theme.shallowSecondColor};
-	padding: 8px;
-	border-radius: 8px;
-	margin: 10px 0;
+width: 194px;
+height: 56px;
+background-color: #fff8ef;
+padding: 6px;
+border-radius: 8px;
+margin: 6px 0;
 `
 
 const LocationText = styled.p`
@@ -82,10 +83,15 @@ const SunCard = (props: SunCardProps) => {
 	)
 }
 
-const SunDetailsCard = (props: SunCardProps) => {
+const SunDetailsCard = (props: WeatherDataProps) => {
+	const { citiesData } = props
+	// {...currentData.sys} location={currentData.name}
 	return (
 		<InfoCard title='Sunrise & Sunset'>
-			<SunCard {...props} />
+			{/* <SunCard {...props} /> */}
+			{citiesData.map(data => {
+				return <SunCard {...data.sys} location={data.name} key={`sun-detail-${data.name}`} />
+			})}
 		</InfoCard>
 	)
 }

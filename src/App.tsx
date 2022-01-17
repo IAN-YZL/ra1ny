@@ -37,7 +37,7 @@ function App() {
     setLoading(true)
     async function fetchWeatherAPI() {
       try {
-        const [forecastRes, currentRes, citiesData] = await Promise.all([getForecastWeather(city), getCurrentWeather(city), fetchAllWeathers(['Sydney', 'Brisbane'])])
+        const [forecastRes, currentRes, citiesData] = await Promise.all([getForecastWeather(city), getCurrentWeather(city), fetchAllWeathers(['Sydney', 'Brisbane', 'Melbourne'])])
         if (!!forecastRes) {
           setForecast(forecastRes)
         }

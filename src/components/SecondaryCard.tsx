@@ -4,7 +4,7 @@ import { DetailCardProps } from './PrimaryCard'
 import { WeatherFeatureCollection } from './WeatherFeature'
 
 const SecondaryCardWrapper = styled.div`
-	height: 50px;
+	height: 60px;
 	width: 100%;
 	background-color: ${props => props.color || props.theme.mainColor};
 	border-radius: 12px;
@@ -14,6 +14,7 @@ const SecondaryCardWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	margin-top: 16px;
+	justify-content: space-between;
 `
 
 const CollectionWrapper = styled.div`
@@ -21,12 +22,11 @@ const CollectionWrapper = styled.div`
 `
 
 const RightWrapper = styled.div`
-	justify-content: right;
-	margin-left: auto;
-	margin-right: 0;
-
+	width: 40%;
+	text-align: right;
 	& p {
-		float: right;
+
+		font-size: 14px;
 	}
 `
 
@@ -39,8 +39,8 @@ const SecondaryCard = (props: DetailCardProps) => {
 
 			</CollectionWrapper>
 			<RightWrapper>
-				<p>{props.name}</p>
-				<p>{props.main.temp}</p>
+				<p style={{ marginBottom: '6px' }}>{props.name}</p>
+				<p>{props.main.temp.toFixed()}<span>&#176;</span></p>
 			</RightWrapper>
 
 		</SecondaryCardWrapper>
