@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { FlexWrapper } from './styledComponents'
+import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
+import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 
 const WeatherFeatureLeft = styled.div`
 	display: flex;
@@ -21,7 +23,16 @@ const WeatherFeatureWrapper = styled(FlexWrapper)`
 const Divider = styled.div`
 	border: 1px solid #ffffff;
 	height: 10px;
-	margin-right: 17px;
+	margin-right: 12px;
+`
+
+const StyledWaterIcon = styled(OpacityOutlinedIcon)`
+	font-size: 16px !important;
+`
+
+const StyledWindIcon = styled(AirOutlinedIcon)`
+	font-size: 16px !important;
+
 `
 
 
@@ -37,6 +48,22 @@ const WeatherFeature = (props: { icon: ReactNode, label: string, value: string }
 			<div>{props.value}</div>
 		</WeatherFeatureWrapper>
 	)
+}
+
+export const WeatherFeatureCollection = (props: { windSpeed: number, humidity: number }) => {
+
+	return <div>
+		<WeatherFeature
+			icon={<StyledWindIcon />}
+			label='Wind'
+			value={`${props.windSpeed.toFixed()} km/h`}
+		/>
+		<WeatherFeature
+			icon={<StyledWaterIcon />}
+			label='Hum'
+			value={`${props.humidity.toFixed()} %`}
+		/>
+	</div>
 }
 
 export default WeatherFeature

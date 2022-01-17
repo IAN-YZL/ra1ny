@@ -4,9 +4,8 @@ import { FlexWrapper } from './styledComponents'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { IWeather } from '../api/weather';
 import { getWeatherIconUrl } from './WeatherCardSm';
-import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
-import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
-import WeatherFeature from './WeatherFeature';
+
+import { WeatherFeatureCollection } from './WeatherFeature';
 
 const LocationText = styled.p`
 	font-size: 16px;
@@ -59,21 +58,6 @@ const BottomWrapper = styled.div`
 	margin: 10px 36px;
 `
 
-
-
-const StyledWindIcon = styled(AirOutlinedIcon)`
-	font-size: 16px !important;
-`
-
-
-
-const StyledWaterIcon = styled(OpacityOutlinedIcon)`
-	font-size: 16px !important;
-`
-
-
-
-
 const Location = (props: { location: string }) => {
 
 	return (
@@ -102,16 +86,7 @@ const PrimaryCard = (props: DetailCardProps) => {
 					<TempText>{props.main.temp.toFixed()}<span>&#176;</span></TempText>
 					<WeatherText>{props.weather[0].main}</WeatherText>
 					<BottomWrapper>
-						<WeatherFeature
-							icon={<StyledWindIcon />}
-							label='Wind'
-							value={`${props.wind.speed.toFixed()} km/h`}
-						/>
-						<WeatherFeature
-							icon={<StyledWaterIcon />}
-							label='Hum'
-							value={`${props.main.humidity.toFixed()} %`}
-						/>
+						<WeatherFeatureCollection windSpeed={props.wind.speed} humidity={props.main.humidity} />
 					</BottomWrapper>
 				</InforDetails>
 			</InfoWrapper>
