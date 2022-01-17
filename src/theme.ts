@@ -1,4 +1,4 @@
-export const theme = {
+export const theme: Theme = {
   mainColor: '#5e93ff',
   secondColor: '#f7c488',
   thirdColor: '#01c374',
@@ -7,6 +7,8 @@ export const theme = {
   shallowThirdColor: '#dbfce7',
   disabledColor: '#a7a8ae',
   searchColor: '#b7cef9',
+  mainColor2: '#fe77a9',
+  mainColor3: '#fdb25f',
 };
 
 export interface Theme {
@@ -18,4 +20,6 @@ export interface Theme {
   shallowThirdColor: string;
   disabledColor: string;
   searchColor: string;
+  mainColor2: string;
+  mainColor3: string;
 }

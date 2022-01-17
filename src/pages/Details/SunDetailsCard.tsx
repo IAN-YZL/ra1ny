@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import { Theme } from '../../theme';
 import { FlexWrapper } from '../../components/styledComponents';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { ISunDetails } from '../../api/weather';
 
 const StyledLocationIcon = styled(LocationOnOutlinedIcon)`
@@ -61,7 +62,7 @@ const SunCard = (props: SunCardProps) => {
 	const SunStatus = withTheme((props: { type: 'sunrise' | 'sunset', time: string, theme: Theme }) => {
 		return (
 			<SunStatusWrapper>
-				<LightModeOutlinedIcon fontSize='small' htmlColor={props.theme.secondColor} />
+				{props.type === 'sunrise' ? <LightModeOutlinedIcon fontSize='small' htmlColor={props.theme.secondColor} /> : <DarkModeOutlinedIcon fontSize='small' htmlColor={props.theme.secondColor} />}
 				<SunStatusTextWrapper>
 					<SunStatusLabel>{props.type === 'sunrise' ? 'Sunrise' : 'Sunset'}</SunStatusLabel>
 					<SunStatusTime>{props.time}</SunStatusTime>
