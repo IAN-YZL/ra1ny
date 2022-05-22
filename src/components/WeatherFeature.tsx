@@ -1,69 +1,81 @@
-import React, { ReactNode } from 'react'
-import styled from 'styled-components'
-import { FlexWrapper } from './styledComponents'
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import { FlexWrapper } from './styledComponents';
 import AirOutlinedIcon from '@mui/icons-material/AirOutlined';
 import OpacityOutlinedIcon from '@mui/icons-material/OpacityOutlined';
 
 const WeatherFeatureLeft = styled.div`
-	display: flex;
-	width: 50%;
-`
+  display: flex;
+  width: 50%;
+`;
 
 const FeatureLabel = styled.p`
-	margin-left: 4px;
-`
+  margin-left: 4px;
+`;
 
 const WeatherFeatureWrapper = styled(FlexWrapper)`
-	width: 100%;
-	align-items: center;
-	font-size: 12px;
-	margin-bottom: 4px;
-`
+  width: 100%;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 4px;
+`;
 
 const Divider = styled.div`
-	border: 1px solid #ffffff;
-	height: 10px;
-	margin-right: 12px;
-`
+  border: 1px solid #ffffff;
+  height: 10px;
+  margin-right: 12px;
+`;
 
 const StyledWaterIcon = styled(OpacityOutlinedIcon)`
-	font-size: 16px !important;
-`
+  font-size: 16px !important;
+`;
 
 const StyledWindIcon = styled(AirOutlinedIcon)`
-	font-size: 16px !important;
+  font-size: 16px !important;
+`;
 
-`
-
-
-
-const WeatherFeature = (props: { icon: ReactNode, label: string, value: string }) => {
-	return (
-		<WeatherFeatureWrapper>
-			<WeatherFeatureLeft>
-				{props.icon}
-				<FeatureLabel>{props.label}</FeatureLabel>
-			</WeatherFeatureLeft>
-			<Divider />
-			<div>{props.value}</div>
-		</WeatherFeatureWrapper>
-	)
+interface WeatherFeatureProps {
+  icon: ReactNode;
+  label: string;
+  value: string;
 }
 
-export const WeatherFeatureCollection = (props: { windSpeed: number, humidity: number }) => {
+const WeatherFeature: React.VFC<WeatherFeatureProps> = ({
+  icon,
+  label,
+  value,
+}: WeatherFeatureProps) => {
+  return (
+    <WeatherFeatureWrapper>
+      <WeatherFeatureLeft>
+        {icon}
+        <FeatureLabel>{label}</FeatureLabel>
+      </WeatherFeatureLeft>
+      <Divider />
+      <div>{value}</div>
+    </WeatherFeatureWrapper>
+  );
+};
 
-	return <div>
-		<WeatherFeature
-			icon={<StyledWindIcon />}
-			label='Wind'
-			value={`${props.windSpeed.toFixed()} km/h`}
-		/>
-		<WeatherFeature
-			icon={<StyledWaterIcon />}
-			label='Hum'
-			value={`${props.humidity.toFixed()} %`}
-		/>
-	</div>
+interface WeatherFeatureCollectionProps {
+  windSpeed: number;
+  humidity: number;
 }
 
-export default WeatherFeature
+export const WeatherFeatureCollection: React.VFC<WeatherFeatureCollectionProps> = ({
+  windSpeed,
+  humidity,
+}: WeatherFeatureCollectionProps) => {
+  return (
+    <div>
+      <WeatherFeature
+        icon={<StyledWindIcon />}
+        label="Wind"
+        value={`${windSpeed.toFixed()} km/h`}
+      />
+      <WeatherFeature icon={<StyledWaterIcon />} label="Hum" value={`${humidity.toFixed()} %`} />
+    </div>
+  );
+};
+
+export default WeatherFeature;

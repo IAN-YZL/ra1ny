@@ -1,19 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
-import { FlexWrapper } from '../../components/styledComponents'
-import SearchBar from './SearchBar'
+import React from 'react';
+import styled from 'styled-components';
+import { FlexWrapper } from '../../components/styledComponents';
+import SearchBar from './SearchBar';
 
 const HeaderWrapper = styled(FlexWrapper)`
-	margin-bottom: 24px;
-`
-const OverviewHeader = (props: { setCity: (value: React.SetStateAction<string>) => void }) => {
-	return (
-		<HeaderWrapper>
-			<SearchBar setCity={(value) => props.setCity(value)} />
+  margin-bottom: 24px;
+`;
 
-
-		</HeaderWrapper>
-	)
+interface OverviewHeaderProps {
+  setCity: (city: string) => void;
 }
 
-export default OverviewHeader
+const OverviewHeader: React.VFC<OverviewHeaderProps> = ({ setCity }: OverviewHeaderProps) => {
+  return (
+    <HeaderWrapper>
+      <SearchBar setCity={(value) => setCity(value)} />
+    </HeaderWrapper>
+  );
+};
+
+export default OverviewHeader;

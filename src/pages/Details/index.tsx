@@ -1,24 +1,23 @@
-import React from 'react'
-import styled from 'styled-components'
-import CurrentWeathers from './Weathers'
-import Header from './Header'
-import BottomContainer from './BottomContainer'
-import { WeatherDataProps } from '../Dashboard'
+import React from 'react';
+import styled from 'styled-components';
+import CurrentWeathers from './Weathers';
+import Header from './Header';
+import BottomContainer from './BottomContainer';
+import { WeatherDataProps } from '../Dashboard';
 
 const DetailsWrapper = styled.div`
-	padding: 22px;
-	width: 67%;
-	background-color: ${props => props.theme.shallowMainColor};
-	box-sizing: border-box;
-`
+  padding: 22px;
+  width: 67%;
+  background-color: ${(props) => props.theme.shallowMainColor};
+  box-sizing: border-box;
+`;
 
+const Details: React.VFC<WeatherDataProps> = (props: WeatherDataProps) => (
+  <DetailsWrapper>
+    <Header />
+    <CurrentWeathers weathers={props.forecastData.list} />
+    <BottomContainer {...props} />
+  </DetailsWrapper>
+);
 
-const Details = (props: WeatherDataProps) => (
-	<DetailsWrapper>
-		<Header />
-		<CurrentWeathers weathers={props.forecastData.list} />
-		<BottomContainer {...props} />
-	</DetailsWrapper>
-)
-
-export default Details
+export default Details;
