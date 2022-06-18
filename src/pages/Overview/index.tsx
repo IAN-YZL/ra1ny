@@ -16,11 +16,11 @@ const OverviewWrapper = styled.div`
 
 interface OverviewProps {
   citiesData: IWeather[];
-  setCity: (value: React.SetStateAction<string>) => void;
+  setCity: (name: string) => void;
   theme: Theme;
 }
 
-const Overview: React.VFC<OverviewProps> = (props: OverviewProps) => {
+const Overview: React.FC<OverviewProps> = (props: OverviewProps) => {
   const [primary, ...others] = props.citiesData;
   const colors = [props.theme.mainColor2, props.theme.mainColor3];
 

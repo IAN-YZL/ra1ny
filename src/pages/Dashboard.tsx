@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { IForecastData, IWeather } from '../api/weather';
 import { FlexWrapper } from '../components/styledComponents';
+import { CitiesContext } from '../context';
 import Details from './Details';
 import Overview from './Overview';
 
@@ -20,14 +21,17 @@ export interface WeatherDataProps {
   forecastData: IForecastData;
   currentData: IWeather;
   citiesData: IWeather[];
-  setCity: (value: React.SetStateAction<string>) => void;
+  setCity: (value: string) => void;
 }
 
-const Dashboard: React.VFC<WeatherDataProps> = (props: WeatherDataProps) => (
-  <DashboardWrapper>
-    <Details {...props} />
-    <Overview setCity={(value) => props.setCity(value)} citiesData={props.citiesData} />
-  </DashboardWrapper>
-);
+const Dashboard: React.FC = () => {
+  const { setCity, citiesData } = useContext(CitiesContext);
+  return (
+    <DashboardWrapper>
+      <Details />
+      <Overview setCity={setCity} citiesData={citiesData} />
+    </DashboardWrapper>
+  );
+};
 
 export default Dashboard;

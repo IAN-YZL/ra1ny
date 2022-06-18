@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Dashboard from './pages/Dashboard';
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
 import { getCurrentWeather, getForecastWeather, IForecastData, IWeather } from './api/weather';
 import { CircularProgress, Snackbar, Alert } from '@mui/material';
+import { CitiesContext, ICity } from './context';
 
 const LoadingIcon = styled(CircularProgress)`
   position: absolute;
@@ -12,76 +13,105 @@ const LoadingIcon = styled(CircularProgress)`
   right: 0;
   bottom: 0;
   margin: auto;
-`
+`;
 
 const fetchAllWeathers = async (cities: string[]) => {
-  const promises = cities.map(async city => {
-    const weather = await getCurrentWeather(city)
-    return weather
-  })
-  const res = await Promise.all(promises)
+  const promises = cities.map(async (city) => {
+    const weather = await getCurrentWeather(city);
+    return weather;
+  });
+  const res = await Promise.all(promises);
 
-  return res.filter(data => !!data) as IWeather[]
-}
-
+  return res.filter((data) => !!data) as IWeather[];
+};
 
 function App() {
-  const [forecast, setForecast] = useState<IForecastData>()
-  const [current, setCurrent] = useState<IWeather[]>()
-  const [city, setCity] = useState<string>('Sydney')
-  // const [cities, setCities] = useState<IWeather[]>(['Sydney'])
-  const [loading, setLoading] = useState<boolean>(false)
-  const [openMessager, setOpenMessager] = useState<boolean>(false)
+  const [forecast, setForecast] = useState<IForecastData>();
+  const [current, setCurrent] = useState<IWeather[]>();
+  // const [city, setCity] = useState<string>('Sydney');
+  const [cities, setCities] = useState<ICity[]>([
+    { id: 1, name: 'Sydney' },
+    { id: 2, name: 'Brisbane' },
+    { id: 3, name: 'Melbourne' },
+  ]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [openMessager, setOpenMessager] = useState<boolean>(false);
+
+  const currentCity = cities.find((city) => city.id === 1)?.name || 'Sydney';
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     async function fetchWeatherAPI() {
       try {
-        const [forecastRes, currentRes, citiesData] = await Promise.all([getForecastWeather(city), getCurrentWeather(city), fetchAllWeathers(['Sydney', 'Brisbane', 'Melbourne'])])
+        const [forecastRes, currentRes, citiesData] = await Promise.all([
+          getForecastWeather(currentCity),
+          getCurrentWeather(currentCity),
+          fetchAllWeathers(cities?.map((city) => city.name) || []),
+        ]);
         if (!!forecastRes) {
-          setForecast(forecastRes)
+          setForecast(forecastRes);
         }
         // if (!!currentRes) {
         //   setCurrent([currentRes])
         // }
         if (citiesData.length > 0) {
-          setCurrent(citiesData)
+          setCurrent(citiesData);
         }
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
-        setLoading(false)
-        setOpenMessager(true)
-        let message = 'Loading Data Failed'
+        setLoading(false);
+        setOpenMessager(true);
+        let message = 'Loading Data Failed';
         if (error instanceof Error) {
-          message = error.message
+          message = error.message;
         }
-        throw new Error(message)
+        throw new Error(message);
       }
     }
-    fetchWeatherAPI()
-  }, [city])
+    fetchWeatherAPI();
+  }, [cities, currentCity]);
+
+  const setCity = (cityName: string, id = 1) => {
+    const newCities = [...cities];
+    newCities[id - 1] = { id, name: cityName };
+    setCities(newCities);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      {
-        !loading ?
-          forecast && current &&
-          <Dashboard
-            forecastData={forecast}
-            currentData={current[0]}
-            citiesData={current}
-            setCity={value => setCity(value)}
-          /> :
-          <LoadingIcon />
-      }
+      {!loading ? (
+        forecast &&
+        current && (
+          <CitiesContext.Provider
+            value={{
+              cities,
+              currentWeather: current[0],
+              citiesData: current,
+              forecastWeathers: forecast,
+              setCity,
+            }}
+          >
+            <Dashboard />
+          </CitiesContext.Provider>
+        )
+      ) : (
+        <LoadingIcon />
+      )}
       <Snackbar
         open={openMessager}
         autoHideDuration={5000}
-        onClose={() => { setOpenMessager(false) }}
+        onClose={() => {
+          setOpenMessager(false);
+        }}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert severity="error" onClose={() => { setOpenMessager(false) }}>
-          {`Cannot find the city ${city} in Australia, please input a valid city name.`}
+        <Alert
+          severity="error"
+          onClose={() => {
+            setOpenMessager(false);
+          }}
+        >
+          {`Cannot find the city ${currentCity} in Australia, please input a valid city name.`}
         </Alert>
       </Snackbar>
     </ThemeProvider>

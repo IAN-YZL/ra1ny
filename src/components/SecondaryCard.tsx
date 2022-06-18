@@ -29,7 +29,7 @@ const RightWrapper = styled.div`
   }
 `;
 
-const SecondaryCard: React.VFC<DetailCardProps> = (props: DetailCardProps) => (
+const SecondaryCard: React.FC<DetailCardProps> = (props: DetailCardProps) => (
   <SecondaryCardWrapper color={props.color}>
     <CollectionWrapper>
       <WeatherFeatureCollection windSpeed={props.wind.speed} humidity={props.main.humidity} />

@@ -62,7 +62,7 @@ interface LocationProps {
   location: string;
 }
 
-const Location: React.VFC<LocationProps> = ({ location }: LocationProps) => {
+const Location: React.FC<LocationProps> = ({ location }: LocationProps) => {
   return (
     <FlexWrapper>
       <LocationOnOutlinedIcon htmlColor="#ffffff" fontSize="small" />
@@ -75,7 +75,7 @@ export interface DetailCardProps extends IWeather {
   color?: string;
 }
 
-const PrimaryCard: React.VFC<DetailCardProps> = ({
+const PrimaryCard: React.FC<DetailCardProps> = ({
   color,
   name,
   weather,

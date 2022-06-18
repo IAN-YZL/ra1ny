@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FlexSpaceBetweenWrapper } from '../../components/styledComponents';
-import { WeatherDataProps } from '../Dashboard';
+import { CitiesContext } from '../../context';
 import CloudinessCard from './CloudinessCard';
 import ComfortDetailsCard from './ComfortDetailsCard';
 import SunDetailsCard from './SunDetailsCard';
 
-const BottomContainer: React.VFC<WeatherDataProps> = (props: WeatherDataProps) => {
-  const { currentData } = props;
+const BottomContainer: React.FC = () => {
+  const { currentWeather, forecastWeathers } = useContext(CitiesContext);
   return (
     <FlexSpaceBetweenWrapper>
       <div>
         <ComfortDetailsCard
-          {...currentData.wind}
-          {...currentData.main}
-          location={currentData.name}
+          {...currentWeather.wind}
+          {...currentWeather.main}
+          location={currentWeather.name}
         />
-        <CloudinessCard forecastData={props.forecastData.list} />
+        <CloudinessCard forecastData={forecastWeathers.list} />
       </div>
-      <SunDetailsCard {...props} />
+      <SunDetailsCard />
     </FlexSpaceBetweenWrapper>
   );
 };

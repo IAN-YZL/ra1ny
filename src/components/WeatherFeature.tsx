@@ -40,7 +40,7 @@ interface WeatherFeatureProps {
   value: string;
 }
 
-const WeatherFeature: React.VFC<WeatherFeatureProps> = ({
+const WeatherFeature: React.FC<WeatherFeatureProps> = ({
   icon,
   label,
   value,
@@ -62,7 +62,7 @@ interface WeatherFeatureCollectionProps {
   humidity: number;
 }
 
-export const WeatherFeatureCollection: React.VFC<WeatherFeatureCollectionProps> = ({
+export const WeatherFeatureCollection: React.FC<WeatherFeatureCollectionProps> = ({
   windSpeed,
   humidity,
 }: WeatherFeatureCollectionProps) => {

@@ -22,7 +22,7 @@ interface WeathersProps {
   weathers: IForecastWeather[];
 }
 
-const Weathers: React.VFC<WeathersProps> = ({ weathers }: WeathersProps) => {
+const Weathers: React.FC<WeathersProps> = ({ weathers }: WeathersProps) => {
   const sanitisedData = getFirstWeathersData(weathers);
   return (
     <FlexSpaceBetweenWrapper>

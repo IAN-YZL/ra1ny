@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CurrentWeathers from './Weathers';
 import Header from './Header';
 import BottomContainer from './BottomContainer';
-import { WeatherDataProps } from '../Dashboard';
+import { CitiesContext } from '../../context';
 
 const DetailsWrapper = styled.div`
   padding: 22px;
@@ -12,12 +12,15 @@ const DetailsWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const Details: React.VFC<WeatherDataProps> = (props: WeatherDataProps) => (
-  <DetailsWrapper>
-    <Header />
-    <CurrentWeathers weathers={props.forecastData.list} />
-    <BottomContainer {...props} />
-  </DetailsWrapper>
-);
+const Details: React.FC = () => {
+  const { forecastWeathers } = useContext(CitiesContext);
+  return (
+    <DetailsWrapper>
+      <Header />
+      <CurrentWeathers weathers={forecastWeathers.list} />
+      <BottomContainer />
+    </DetailsWrapper>
+  );
+};
 
 export default Details;

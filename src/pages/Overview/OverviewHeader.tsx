@@ -11,7 +11,7 @@ interface OverviewHeaderProps {
   setCity: (city: string) => void;
 }
 
-const OverviewHeader: React.VFC<OverviewHeaderProps> = ({ setCity }: OverviewHeaderProps) => {
+const OverviewHeader: React.FC<OverviewHeaderProps> = ({ setCity }: OverviewHeaderProps) => {
   return (
     <HeaderWrapper>
       <SearchBar setCity={(value) => setCity(value)} />

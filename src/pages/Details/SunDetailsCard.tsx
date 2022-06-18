@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { withTheme } from 'styled-components';
 import InfoCard from '../../components/InfoCard';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
@@ -7,7 +7,7 @@ import { FlexWrapper } from '../../components/styledComponents';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { ISunDetails } from '../../api/weather';
-import { WeatherDataProps } from '../Dashboard';
+import { CitiesContext } from '../../context';
 
 const StyledLocationIcon = styled(LocationOnOutlinedIcon)`
   font-size: 14px !important;
@@ -47,11 +47,15 @@ const SunStatusWrapper = styled(FlexWrapper)`
   width: 50%;
 `;
 
+const SunCardContent = styled(FlexWrapper)`
+  margin-top: 8px;
+`;
+
 interface SunCardProps extends ISunDetails {
   location: string;
 }
 
-const SunCard: React.VFC<SunCardProps> = ({ location, sunrise, sunset }: SunCardProps) => {
+const SunCard: React.FC<SunCardProps> = ({ location, sunrise, sunset }: SunCardProps) => {
   const Header = withTheme((props: { theme: Theme }) => (
     <FlexWrapper>
       <StyledLocationIcon htmlColor={props.theme.mainColor} fontSize="small" />
@@ -80,7 +84,7 @@ const SunCard: React.VFC<SunCardProps> = ({ location, sunrise, sunset }: SunCard
   return (
     <SunCardWrapper>
       <Header />
-      <FlexWrapper style={{ marginTop: '12px' }}>
+      <SunCardContent>
         <SunStatus
           type="sunrise"
           time={new Date(sunrise * 1000).toLocaleTimeString('en-AU', {
@@ -95,16 +99,19 @@ const SunCard: React.VFC<SunCardProps> = ({ location, sunrise, sunset }: SunCard
             minute: '2-digit',
           })}
         />
-      </FlexWrapper>
+      </SunCardContent>
     </SunCardWrapper>
   );
 };
 
-const SunDetailsCard: React.VFC<WeatherDataProps> = ({ citiesData }: WeatherDataProps) => (
-  <InfoCard title="Sunrise & Sunset">
-    {citiesData.map((data) => {
-      return <SunCard {...data.sys} location={data.name} key={`sun-detail-${data.name}`} />;
-    })}
-  </InfoCard>
-);
+const SunDetailsCard: React.FC = () => {
+  const { citiesData } = useContext(CitiesContext);
+  return (
+    <InfoCard title="Sunrise & Sunset">
+      {citiesData.map((data) => {
+        return <SunCard {...data.sys} location={data.name} key={`sun-detail-${data.name}`} />;
+      })}
+    </InfoCard>
+  );
+};
 export default SunDetailsCard;

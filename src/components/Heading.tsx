@@ -12,7 +12,7 @@ interface HeadingProps {
   text: string;
 }
 
-const Heading: React.VFC<HeadingProps> = ({ text }: HeadingProps) => (
+const Heading: React.FC<HeadingProps> = ({ text }: HeadingProps) => (
   <HeadingWrapper>{text}</HeadingWrapper>
 );
 

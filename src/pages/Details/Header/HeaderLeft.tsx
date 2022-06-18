@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Heading from '../../components/Heading';
+import Heading from '../../../components/Heading';
 import styled from 'styled-components';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import getDayPeriod from '../../helpers/getDayPeroiod';
+import getDayPeriod from '../../../helpers/getDayPeroiod';
 
 const HeaderWrapper = styled.div`
   margin: 10px 0;
@@ -29,7 +29,7 @@ const GreetingText = styled.p`
 
 const refreshTimer = 60 * 1000;
 
-const Header: React.VFC = () => {
+const HeaderLeft: React.FC = () => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -64,4 +64,4 @@ const Header: React.VFC = () => {
   );
 };
 
-export default Header;
+export default HeaderLeft;

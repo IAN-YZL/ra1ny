@@ -102,7 +102,7 @@ const LocationComp = withTheme((props: { location: string; theme: Theme }) => {
   );
 });
 
-const ComfortDetailsCard: React.VFC<ComfortDetailsCardProps> = ({
+const ComfortDetailsCard: React.FC<ComfortDetailsCardProps> = ({
   speed,
   location,
   deg,

@@ -31,7 +31,7 @@ export const getWeatherIconUrl = (iconIndex: string) => {
   return `http://openweathermap.org/img/wn/${iconIndex.replace('n', 'd')}@4x.png`;
 };
 
-const WeatherCardSm: React.VFC<WeatherCardSmProps> = ({
+const WeatherCardSm: React.FC<WeatherCardSmProps> = ({
   weather,
   day,
   temp,
