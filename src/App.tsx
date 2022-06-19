@@ -28,32 +28,30 @@ const fetchAllWeathers = async (cities: string[]) => {
 function App() {
   const [forecast, setForecast] = useState<IForecastData>();
   const [current, setCurrent] = useState<IWeather[]>();
-  // const [city, setCity] = useState<string>('Sydney');
   const [cities, setCities] = useState<ICity[]>([
-    { id: 1, name: 'Sydney' },
-    { id: 2, name: 'Brisbane' },
-    { id: 3, name: 'Melbourne' },
+    { id: 1, name: 'Sydney', countryCode: 'AU' },
+    { id: 2, name: 'Brisbane,AU', countryCode: 'AU' },
+    { id: 3, name: 'Melbourne,AU', countryCode: 'AU' },
   ]);
   const [loading, setLoading] = useState<boolean>(false);
   const [openMessager, setOpenMessager] = useState<boolean>(false);
 
-  const currentCity = cities.find((city) => city.id === 1)?.name || 'Sydney';
+  const currentCity = cities.find((city) => city.id === 1);
+  const currentCityName = currentCity
+    ? `${currentCity.name},${currentCity.countryCode}`
+    : 'Sydney,AU';
 
   useEffect(() => {
     setLoading(true);
     async function fetchWeatherAPI() {
       try {
-        const [forecastRes, currentRes, citiesData] = await Promise.all([
-          getForecastWeather(currentCity),
-          getCurrentWeather(currentCity),
-          fetchAllWeathers(cities?.map((city) => city.name) || []),
+        const [forecastRes, citiesData] = await Promise.all([
+          getForecastWeather(currentCityName),
+          fetchAllWeathers(cities?.map((city) => `${city.name},${city.countryCode}`) || []),
         ]);
         if (!!forecastRes) {
           setForecast(forecastRes);
         }
-        // if (!!currentRes) {
-        //   setCurrent([currentRes])
-        // }
         if (citiesData.length > 0) {
           setCurrent(citiesData);
         }
@@ -69,11 +67,11 @@ function App() {
       }
     }
     fetchWeatherAPI();
-  }, [cities, currentCity]);
+  }, [cities, currentCity, currentCityName]);
 
-  const setCity = (cityName: string, id = 1) => {
+  const setCity = (cityName: string, countryCode = 'AU', id = 1) => {
     const newCities = [...cities];
-    newCities[id - 1] = { id, name: cityName };
+    newCities[id - 1] = { id, name: cityName, countryCode };
     setCities(newCities);
   };
 

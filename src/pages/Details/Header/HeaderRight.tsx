@@ -10,7 +10,9 @@ const HeaderRightWrapper = styled.div`
 `;
 
 const HeaderRight: React.FC = () => {
-  const { cities } = useContext(CitiesContext);
+  const { cities, citiesData } = useContext(CitiesContext);
+
+  console.log(citiesData);
 
   return cities ? <HeaderRightWrapper>{cities[0].name}</HeaderRightWrapper> : null;
 };

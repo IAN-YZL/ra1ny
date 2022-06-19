@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexWrapper } from '../../components/styledComponents';
+import { FlexSpaceBetweenWrapper } from '../../components/styledComponents';
 import SearchBar from './SearchBar';
+import EditButton from './EditButton';
 
-const HeaderWrapper = styled(FlexWrapper)`
+const HeaderWrapper = styled(FlexSpaceBetweenWrapper)`
   margin-bottom: 24px;
 `;
 
@@ -15,6 +16,7 @@ const OverviewHeader: React.FC<OverviewHeaderProps> = ({ setCity }: OverviewHead
   return (
     <HeaderWrapper>
       <SearchBar setCity={(value) => setCity(value)} />
+      <EditButton />
     </HeaderWrapper>
   );
 };

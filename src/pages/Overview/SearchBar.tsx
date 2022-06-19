@@ -6,7 +6,7 @@ import { Theme } from '../../theme';
 
 const SearchBarInput = styled.input`
   height: 24px;
-  width: 120px;
+  width: 140px;
   border: transparent;
   background-color: ${(props) => props.theme.shallowMainColor};
   padding: 4px 4px 4px 30px;

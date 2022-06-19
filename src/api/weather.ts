@@ -69,11 +69,11 @@ export interface IForecastData {
   list: IForecastWeather[];
 }
 
-export const getCurrentWeather = (city = 'Sydney'): Promise<IWeather | undefined> => {
+export const getCurrentWeather = (city: string): Promise<IWeather | undefined> => {
   return weatherApi
     .get('/weather', {
       params: {
-        q: `${city},AU`,
+        q: `${city}`,
         units: 'metric',
         appid: process.env.REACT_APP_WEATHER_API_KEY,
       },
@@ -84,11 +84,11 @@ export const getCurrentWeather = (city = 'Sydney'): Promise<IWeather | undefined
     });
 };
 
-export const getForecastWeather = (city = 'Sydney'): Promise<void | IForecastData> => {
+export const getForecastWeather = (city: string): Promise<void | IForecastData> => {
   return weatherApi
     .get('/forecast', {
       params: {
-        q: `${city},AU`,
+        q: `${city}`,
         units: 'metric',
         APPID: process.env.REACT_APP_WEATHER_API_KEY,
       },

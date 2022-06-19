@@ -4,6 +4,7 @@ import { IForecastData, IWeather } from './api/weather';
 export interface ICity {
   id: number;
   name: string;
+  countryCode: string;
 }
 
 type CitiesContextType = {
@@ -11,7 +12,7 @@ type CitiesContextType = {
   forecastWeathers: IForecastData;
   cities: ICity[];
   citiesData: IWeather[];
-  setCity: (name: string, id?: number) => void;
+  setCity: (name: string, countryCode?: string, id?: number) => void;
 };
 
 const mockWeather: IWeather = {
@@ -38,7 +39,7 @@ const mockForecastWeather: IForecastData = {
 };
 
 export const CitiesContext = createContext<CitiesContextType>({
-  cities: [{ id: 1, name: '' }],
+  cities: [{ id: 1, name: '', countryCode: '' }],
   citiesData: [mockWeather],
   currentWeather: mockWeather,
   setCity: () => null,
